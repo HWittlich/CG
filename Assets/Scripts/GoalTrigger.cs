@@ -10,7 +10,7 @@ public class GoalTrigger : MonoBehaviour {
 	public GameObject bestLapDisplay;
 	public GameObject currentLapDisplay;
 
-	void OnTriggerEnter(){
+	void OnTriggerEnter(Collider other){
 		goalTrigger.SetActive (false);
 		checkpointTrigger.SetActive (true);
 		bestLapDisplay.GetComponent<Text>().text = currentLapDisplay.GetComponent<Text>().text;

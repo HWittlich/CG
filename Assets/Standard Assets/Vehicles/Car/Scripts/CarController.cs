@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
@@ -24,6 +25,8 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
         [SerializeField] private Vector3 m_CentreOfMassOffset;
         [SerializeField] private float m_MaximumSteerAngle;
+        [Tooltip("Multiplier of Maximum Steer Angle at Full Speed")] [SerializeField]
+        private float m_SteeringControl;
         [Range(0, 1)] [SerializeField] private float m_SteerHelper; // 0 is raw physics , 1 the car will grip in the direction it is facing
         [Range(0, 1)] [SerializeField] private float m_TractionControl; // 0 is no traction control, 1 is full interference
         [SerializeField] private float m_FullTorqueOverAllWheels;
@@ -145,7 +148,9 @@ namespace UnityStandardAssets.Vehicles.Car
 
             //Set the steer on the front wheels.
             //Assuming that wheels 0 and 1 are the front wheels.
-            m_SteerAngle = steering*m_MaximumSteerAngle;
+            var effectiveSteeringControl = 1 - CurrentSpeed/MaxSpeed * (1-m_SteeringControl);
+            
+            m_SteerAngle = steering * m_MaximumSteerAngle * effectiveSteeringControl;
             m_WheelColliders[0].steerAngle = m_SteerAngle;
             m_WheelColliders[1].steerAngle = m_SteerAngle;
 
@@ -195,7 +200,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void ApplyDrive(float accel, float footbrake)
         {
-
             float thrustTorque;
             switch (m_CarDriveType)
             {
@@ -209,6 +213,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
                 case CarDriveType.FrontWheelDrive:
                     thrustTorque = accel * (m_CurrentTorque / 2f);
+                    Debug.Log("thrust torque: " + thrustTorque);
                     m_WheelColliders[0].motorTorque = m_WheelColliders[1].motorTorque = thrustTorque;
                     break;
 
@@ -259,7 +264,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private void AddDownForce()
         {
             m_WheelColliders[0].attachedRigidbody.AddForce(-transform.up*m_Downforce*
-                                                         m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
+                                                           m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
         }
 
 

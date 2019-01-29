@@ -184,7 +184,7 @@ namespace UnityStandardAssets.Vehicles.Car
             // detect collision against other cars, so that we can take evasive action
             if (col.rigidbody != null)
             {
-                var otherAI = col.rigidbody.GetComponent<CarAIControl>();
+                /*var otherAI = col.rigidbody.GetComponent<CarAIControl>();
                 if (otherAI != null)
                 {
                     // we'll take evasive action for 1 second
@@ -205,6 +205,27 @@ namespace UnityStandardAssets.Vehicles.Car
                     // both cars should take evasive action by driving along an offset from the path centre,
                     // away from the other car
                     var otherCarLocalDelta = transform.InverseTransformPoint(otherAI.transform.position);
+                    float otherCarAngle = Mathf.Atan2(otherCarLocalDelta.x, otherCarLocalDelta.z);
+                    m_AvoidPathOffset = m_LateralWanderDistance*-Mathf.Sign(otherCarAngle);
+                
+                }*/
+
+                var otherCar = col.rigidbody.GetComponent<CarController>();
+
+                if (otherCar != null)
+                {
+                    m_AvoidOtherCarTime = Time.time + 1;
+                    
+                    if (Vector3.Angle(transform.forward, otherCar.transform.position - transform.position) < 90)
+                    {
+                        m_AvoidOtherCarSlowdown = 0.5f;
+                    }
+                    else
+                    {
+                        m_AvoidOtherCarSlowdown = 1;
+                    }
+
+                    var otherCarLocalDelta = transform.InverseTransformPoint(otherCar.transform.position);
                     float otherCarAngle = Mathf.Atan2(otherCarLocalDelta.x, otherCarLocalDelta.z);
                     m_AvoidPathOffset = m_LateralWanderDistance*-Mathf.Sign(otherCarAngle);
                 }
