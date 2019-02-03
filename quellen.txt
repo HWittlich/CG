@@ -1,0 +1,14 @@
+Assets:
+Unity Standard Assets - https://assetstore.unity.com/packages/essentials/asset-packs/standard-assets-32351
+
+============
+Bildquellen:
+https://pixabay.com/de/abstrakt-wand-hintergrund-schwarz-1850424/ - asphalt.jpg
+https://pixabay.com/de/natur-gras-gr%C3%BCn-rasen-pflanzen-1659054/ - gras.jpg
+https://pixabay.com/de/marmor-textur-wei%C3%9F-muster-2362262/ - fels.jpg
+eigene Darstellung: Flag und Flag 2
+
+=============
+Audioquellen:
+http://soundbible.com/1013-Music-Censor.html - long beep
+http://soundbible.com/1669-Robot-Blip-2.html - short beep

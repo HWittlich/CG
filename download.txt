@@ -1,0 +1,2 @@
+Source: https://github.com/HWittlich/CG/tree/jonas
+Binary: https://github.com/HWittlich/CG/releases
