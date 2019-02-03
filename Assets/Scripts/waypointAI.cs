@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class waypointAI : MonoBehaviour
 {
-    private string aiControlledCarTag = "TestAi";
+    private string aiControlledCarTag = "RivalCar";
     public GameObject targetWaypoint;
     public GameObject[] waypoints;
 

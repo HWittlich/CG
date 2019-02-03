@@ -4,11 +4,11 @@ public class CheckpointTrigger : MonoBehaviour
 {
     public GameObject goalTrigger;
     public GameObject checkpointTrigger;
-    public GameObject car;
+    public string playerTag = "Player";
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject == car)
+        if (collider.gameObject.CompareTag(playerTag))
         {
             goalTrigger.SetActive(true);
             checkpointTrigger.SetActive(false);    
