@@ -626,7 +626,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f1f683b3e2e40547902b25ea33784b1, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1513,15 +1513,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CautiousSpeedFactor: 0.75
   m_CautiousMaxAngle: 45
-  m_CautiousMaxDistance: 35
-  m_CautiousAngularVelocityFactor: 25
+  m_CautiousMaxDistance: 55
+  m_CautiousAngularVelocityFactor: 35
   m_SteerSensitivity: 0.02
   m_AccelSensitivity: 0.05
   m_BrakeSensitivity: 1
-  m_LateralWanderDistance: 3
+  m_LateralWanderDistance: 2
   m_LateralWanderSpeed: 0.2
-  m_AccelWanderAmount: 0.1
-  m_AccelWanderSpeed: 0.1
+  m_AccelWanderAmount: 0.01
+  m_AccelWanderSpeed: 0.01
   m_BrakeCondition: 1
   m_Driving: 1
   m_Target: {fileID: 1160265527}
@@ -2903,7 +2903,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e2daca310d0e5ea4c8c95b95c4621700, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5101,11 +5101,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 29ec8f41091ef00abbbd1785c2edb1a4, type: 3}
       propertyPath: m_Topspeed
-      value: 120
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 29ec8f41091ef00abbbd1785c2edb1a4, type: 3}
       propertyPath: m_SpeedType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 29ec8f41091ef00abbbd1785c2edb1a4, type: 3}
+      propertyPath: m_SteeringControl
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 11400022, guid: 29ec8f41091ef00abbbd1785c2edb1a4, type: 3}
       propertyPath: m_Enabled
