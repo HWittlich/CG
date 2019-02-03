@@ -1,9 +1,20 @@
-﻿using System;
+using System;
 using System.Linq;
 using UnityEngine;
 
-public partial class CarResetter : MonoBehaviour
+public class AutoCarResetter : MonoBehaviour
 {
+    public uint movementThreshold = 2;
+    public uint timeThreshold = 5;
+
+    private Vector3 lastPosition;
+    private int timerStart = -1;
+
+    private void Start()
+    {
+        lastPosition = gameObject.transform.position;
+    }
+
     public void ResetToNearestWaypoint()
     {
         var waypoints = FindObjectOfType<waypointAI>().waypoints;
@@ -38,11 +49,26 @@ public partial class CarResetter : MonoBehaviour
         gameObject.transform.rotation = Quaternion.Euler(transformRotation);
     }
 
-    void Update()
+
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        var deltaVector3 = lastPosition - gameObject.transform.position;
+        var delta = Math.Abs(deltaVector3.x) + Math.Abs(deltaVector3.z);
+
+        if (delta > movementThreshold)
         {
-            ResetToNearestWaypoint();
+            timerStart = -1;
+            lastPosition = gameObject.transform.position;
+        }
+        else
+        {
+            var now = (int)
+                (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+
+            if (timerStart == -1)
+                timerStart = now;
+            else if (now - timerStart > timeThreshold)
+                ResetToNearestWaypoint();
         }
     }
 }
